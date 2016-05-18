@@ -1,10 +1,18 @@
 class User < ActiveRecord::Base
-  enum role: [:user, :vip, :admin]
+  enum role: [:user, :admin, :silver, :gold, :platinum, :oq]
   after_initialize :set_default_role, :if => :new_record?
-  after_create :sign_up_for_mailing_list
+  after_initialize :set_default_plan, :if => :new_record?
+  # after_create :sign_up_for_mailing_list
+
+  belongs_to :plan
+  validates_associated :plan
 
   def set_default_role
     self.role ||= :user
+  end
+
+  def set_default_plan
+    self.plan ||= Plan.last
   end
 
   # Include default devise modules. Others available are:

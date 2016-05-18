@@ -3,12 +3,8 @@
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :role => 'form'}) do |f| %>
     <%= devise_error_messages! %>
     <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, :autofocus => true, class: 'form-control' %>
-    </div>
-    <div class="form-group">
       <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
@@ -34,8 +30,18 @@
     <%= f.submit 'Update', :class => 'button right' %>
   <% end %>
 </div>
+<!-- <div class="authform">
+  <h3>Subscription Plan</h3>
+  <%= form_for(resource, :as => resource_name, :url => change_plan_path, :html => { :method => :put, :role  => 'form'}) do |f| %>
+    <div class="form-group">
+      <%= f.label 'Subscription plan' %>
+      <%= f.collection_select(:plan_id, Plan.all, :id, :name) %>
+    </div>
+    <%= f.submit 'Change Plan', :class => 'button right' %>
+  <% end %>
+</div> -->
 <div class="authform">
-<h3>Cancel Account</h3>
-<p>Unhappy? We'll be sad to see you go.</p>
-<%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right' %>
+  <h3>Cancel Account</h3>
+  <p>Unhappy? We'll be sad to see you go.</p>
+  <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button right' %>
 </div>
