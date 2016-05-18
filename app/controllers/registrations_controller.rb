@@ -5,6 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     build_resource({})
     unless params[:plan].nil?
+      # @plan = lan.find_by!(stripe_id: 'oq_membership')
       @plan = Plan.find_by!(stripe_id: params[:plan])
       resource.plan = @plan
     end
@@ -33,6 +34,8 @@ class RegistrationsController < Devise::RegistrationsController
       render json:
         {error: resource.errors.full_messages.to_sentence},
         status: 400
+      # flash[:alert] = resource.error.full_messages.to_sentence
+      # render :new
     end
   end
 
