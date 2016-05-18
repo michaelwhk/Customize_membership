@@ -36,5 +36,13 @@
       <h3>$29/month</h3>
       <%= link_to 'Subscribe', new_user_registration_path(plan: 'platinum'), :class => 'btn btn-primary' %>
     </div>
+    <div class="col-sm-2 well">
+      <div class="plan"><h2>OQ Member</h2></div>
+      <ul class="list-unstyled">
+        <li>Thirty lessons a month</li>
+      </ul>
+      <h3>$100/Year</h3>
+      <%= link_to 'Subscribe', new_user_registration_path(plan: 'oq_membership'), :class => 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
